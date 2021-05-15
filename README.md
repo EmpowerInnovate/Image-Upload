@@ -1,66 +1,36 @@
-# nodeJS-image-upload
+# Image-Upload in "one click" with these 4 part
 
-## 1) This is for local now you can understand the logic of node app  
+### 1) Local
+### 2) Docker
+### 3) Minikube
+### 4) GKE 
 
-Simple NodeJS Express Program get files as input from user and upload it to the server. 
-
-To install necessary packages and start the server: 
-    
-    npm install && npm start
-
-Then go to [http://localhost:3000](http://localhost:3000). 
-
-Explanation - https://medium.com/@nitinpatel_20236/image-upload-via-nodejs-server-3fe7d3faa642
-
-## 2) Docker 
-
-My video explanation - https://drive.google.com/file/d/16DpI9xTQUt-oYqzje1kFrdQoD5lp8iN4/view?usp=sharing
-
-Here first you have to clone my github repo.
-Now all the files you have so you have simply build the image with this command
-
-
-
-
-#### Note : If you want to add node_modules in .dockerignore then you have install npm in docker container and for that you have to do first create the container and then inside the container you have to give the command
+You can run whatever part, just go to HowToRun folder.
+Then go to folder in which you want to run.
+You will get all the shell file to run that perticular part.
+Like if you enter the GKE folder then you have to first run the file "createClusterIfNeeded.sh" with this command
 
 ```
-npm install && npm start
+sh createClusterIfNeeded.sh
 ```
 
-Now you can run the node app in the container port.
+It will create cluster in you gcloud console (Note : You have already created the project in Gcloud Console).
 
-
-
-
-```
-docker build -t nodeapp .
-```
-
-nodeapp is docker image name.
-
-After then you have to give the port of the image and make it container which will run on that port
+Now you want to run this app in gcloud kubernates engine then run this file "gCloudDeployment.sh" with this command
 
 ```
-docker run -p 8081:3000 nodeapp
+sh gCloudDeployment.sh
 ```
 
-8081(Your choice for port) is port of container. 
-Now you have to go in browser and type this => http://localhost:8081/
+It will Run your whole app without doing anything and last you will get port and external IP which you can run in browser and you will get output.
 
-And upload the image of your computer storage.
-
-If you want to go inside the container and see all the things then you can use this command 
-docker exec -it <container id> /bin/bash
+After then you are done with then you can delete the cluster with this command which file also there
 
 ```
-docker exec -it 0caf722b378b /bin/bash
+sh deleteClusterIfNeeded.sh
 ```
 
-Now you are inside the container you can see whatever you want.
-
-That's it...
+Now you are done with your app.
 
 
-
-Thankyou... :)
+Thank you...  :)
